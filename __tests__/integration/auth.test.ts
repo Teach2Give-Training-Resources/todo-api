@@ -25,8 +25,6 @@ beforeAll(async () => {
 afterAll(async () => {
     // clean up
     await db.delete(UsersTable).where(eq(UsersTable.email, testUser.email))
-
-    await db.$client.end()
 })
 
 describe("Post /auth/login", () => {

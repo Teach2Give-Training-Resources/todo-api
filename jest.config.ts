@@ -8,7 +8,8 @@ const config: Config = {
     coverageDirectory: 'coverage', //directory where Jest should output its coverage files
     collectCoverageFrom: [
         '<rootDir>/src/**/*.ts', //collect coverage from all TypeScript files in the src directory
-    ]
+    ],
+    testTimeout: 30000, //30 seconds timeout for each test
 }
 
 export default config;

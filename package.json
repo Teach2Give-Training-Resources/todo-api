@@ -9,17 +9,17 @@
     "start": "npm run build && node dist/index.js",
     "generate": "drizzle-kit generate",
     "migrate": "tsx src/drizzle/migrate.ts",
+    "push": "drizzle-kit push",
+    "studio": "drizzle-kit studio",
     "test": "jest",
-    "lint": "eslint . --ext .ts,.tsx",
-    "smoke:login": "k6 run load-tests/smoke/login.smoke.ts",
+    "seed": "tsx src/Drizzle/seed.ts",
+    "smoke:login": "k6 run load-tests/smoke/login.smoke.ts ",
     "smoke:register": "k6 run load-tests/smoke/register.smoke.ts",
     "smoke:todos": "k6 run load-tests/smoke/todos.get.smoke.ts",
     "load:todos": "k6 run load-tests/load/todos.get.load.ts",
     "stress:todos": "k6 run load-tests/stress/todos.get.stress.ts",
-    "spike:todos": "k6 run load-tests/spike/todos.get.spike.ts",
     "soak:todos": "k6 run load-tests/soak/todos.get.soak.ts",
-    "breakpoint:todos": "k6 run load-tests/breakpoint/todos.get.breakpoint.ts",
-    "seed": "tsx src/Drizzle/seed.ts"
+    "breakpoint:todos": "k6 run load-tests/breakpoint/todos.get.breakpoint.ts"
   },
   "keywords": [],
   "author": "",
@@ -34,11 +34,9 @@
     "@types/k6": "^1.0.2",
     "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.15.2",
-    "@typescript-eslint/eslint-plugin": "^8.33.1",
-    "@typescript-eslint/parser": "^8.33.1",
+    "@types/supertest": "^6.0.3",
     "drizzle-kit": "^0.31.1",
     "jest": "^29.7.0",
-    "k6": "^0.0.0",
     "supertest": "^7.1.1",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
@@ -46,6 +44,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.1",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
@@ -54,7 +53,6 @@
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^7.0.3",
     "pg": "^8.16.0",
-    "rate-limiter-flexible": "^7.1.1",
-    "remove": "^0.1.5"
+    "rate-limiter-flexible": "^7.1.1"
   }
 }

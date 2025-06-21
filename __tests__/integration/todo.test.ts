@@ -41,7 +41,6 @@ afterAll(async () => {
     // Clean up the test user and todo
     await db.delete(TodoTable).where(eq(TodoTable.userId, userId));
     await db.delete(UsersTable).where(eq(UsersTable.email, testUser.email));
-    await db.$client.end();
 });
 
 describe("Todo API Integration Tests", () => {

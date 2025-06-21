@@ -15,9 +15,7 @@ const testUser = {
 
 afterAll(async () => {
     // Clean up the test user
-
     await db.delete(UsersTable).where(eq(UsersTable.email, testUser.email));
-    await db.$client.end();
 })
 
 
