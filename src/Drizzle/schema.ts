@@ -18,6 +18,7 @@ export const UsersTable = pgTable("users", {
     email: varchar("email", { length: 100 }).notNull().unique(),
     password: varchar("password", { length: 255 }).notNull(),
     role: RoleEnum("role").default("user"),
+    image_url: varchar("image_url", { length: 255 }).default("https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"),
     isVerified: boolean("is_verified").default(false),
     verificationCode: varchar("verification_code", { length: 10 })
 })

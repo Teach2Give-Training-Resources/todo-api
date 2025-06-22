@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import { createUserService, getUserByEmailService, userLoginService, verifyUserService } from "./auth.service";
+import { 
+    createUserService, getUserByEmailService, userLoginService, verifyUserService, getAllUsersService, updateUserByIdService, getUserByIdService
+ } from "./auth.service";
 import bycrypt from "bcryptjs";
 import "dotenv/config"
 import jwt from "jsonwebtoken"
@@ -126,6 +128,46 @@ export const loginUserController = async (req: Request, res: Response) => {
                 role: userExist.role
             }
         })
+    } catch (error: any) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
+
+// get all users controller
+export const getAllUsersController = async (req: Request, res: Response) => {
+    try {
+        const users = await getAllUsersService();
+        return res.status(200).json(users);
+    } catch (error: any) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
+// update user by id controller
+export const updateUserByIdController = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const user = req.body;
+
+    try {
+        await getUserByEmailService(id);
+        await updateUserByIdService(id, user);
+        return res.status(200).json({ message: "User updated successfully" });
+    } catch (error: any) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
+// get user by id controller
+export const getUserByIdController = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    try {
+        const user = await getUserByIdService(id);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        return res.status(200).json(user);
     } catch (error: any) {
         return res.status(500).json({ error: error.message });
     }

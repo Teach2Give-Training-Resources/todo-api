@@ -37,3 +37,32 @@ export const userLoginService = async (user: TIUser) => {
         }, where: sql`${UsersTable.email} = ${email} `
     });
 }
+
+// get all users
+export const getAllUsersService = async () => {
+    return await db.query.UsersTable.findMany({
+        columns: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            role: true,
+            isVerified: true
+        }
+    });
+}
+
+// update user by id
+export const updateUserByIdService = async (id: string, user: Partial<TIUser>) => {
+    await db.update(UsersTable)
+        .set(user)
+        .where(sql`${UsersTable.id} = ${id}`);
+    return "User updated successfully";
+}
+
+// get user by id
+export const getUserByIdService = async (id: string) => {
+    return await db.query.UsersTable.findFirst({
+        where: sql`${UsersTable.id} = ${id}`
+    });
+}
